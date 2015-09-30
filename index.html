@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html ng-app= "circlesSquares">
   <head>
     <meta charset="UTF-8">
     <script src="js/jquery-1.11.3.js"></script>
     <script src="lib/angular.js"></script>
     <script src="lib/angular-ui-router.js"></script>
     <script src="app.js"></script>
+    <script src="controllers/BoardController.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/styles.css">
     <title>Circles and Squares of Doom</title>
   </head>
   <body>
+<h1>Circles and Squares of Doom</h1>
+    <div ng-controller="BoardCtrl">
+      <table>
+        <tr ng-repeat="row in board.rows">
+          <td ng-repeat="dot in row.dots" ng-mouseover="dot.hasDot = false">
+            <img ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=20px>
+            <img ng-if="dot.color=='orange' && dot.hasDot" src="images/orange.svg" height=20px>
+            <img ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=20px>
+            <img ng-if="dot.color=='green' && dot.hasDot" src="images/green.svg" height=20px>
+            <img ng-if="dot.color=='blue' && dot.hasDot" src="images/blue.svg" height=20px>
+            <img ng-if="!dot.hasDot" src="blank.png" height=20px>
+          </td>
+        </tr>
+      </table>
+    </div>
 
   </body>
 </html>
