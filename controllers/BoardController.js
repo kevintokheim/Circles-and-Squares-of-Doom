@@ -33,13 +33,6 @@ function getDot(board, row, column) {
   return board.rows[row].dots[column];
 }
 
-function placeInitialDots(board) {
-  var row = Math.round(Math.random() * 30);
-  var column = Math.round(Math.random() * 30);
-  var dot = getDot(board, row, column);
-  dot.hasDot = true;
-  dot.color = randomColorGenerator();
-}
 
 function placeInitialDots(board) {
   for(var i = 10; i < 20; i++) {
@@ -50,8 +43,19 @@ function placeInitialDots(board) {
   }
 }
 
+
 circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   $scope.board = createBoard();
   placeInitialDots($scope.board);
+  $scope.repopulate = function(){
+    for(var i = 10; i < 20; i++) {
+      for(var j = 10; j < 20; j++) {
+        if ($scope.board.rows[i].dots[j].hasDot == false){
+          $scope.board.rows[i].dots[j].hasDot = true;
+          $scope.board.rows[i].dots[j].color = randomColorGenerator();
+        }
+      }
+    }
+  }
 
 });
