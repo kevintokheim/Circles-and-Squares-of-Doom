@@ -1,23 +1,5 @@
-table #red {
-  background-color:#ff0000;
-  width: 20px;
-}
-#orange {
-  background-color:red;
-  width: 20px;
-}
-
-#yellow {
-  background-color:'red';
-  width: 20px;
-}
-
-#green {
-  background-color:'red';
-  width: 20px;
-}
-
-#blue {
-  background-color:'red';
-  width: 20px;
+img {
+  user-drag: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
 }
