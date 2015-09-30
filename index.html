@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html ng-app= "circlesSquares">
   <head>
     <meta charset="UTF-8">
     <script src="js/jquery-1.11.3.js"></script>
     <script src="lib/angular.js"></script>
     <script src="lib/angular-ui-router.js"></script>
     <script src="app.js"></script>
+    <script src="controllers/BoardController.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css">
     <title>Circles and Squares of Doom</title>
   </head>
   <body>
+
+    <div ng-controller="BoardCtrl">
+      <table>
+      {{board.rows}}
+        <tr ng-repeat="row in board.rows">
+          {{ row }}
+          <td ng-repeat="dot in row.dots">
+            {{ dot.hasDot }}
+          </td>
+        </tr>
+      </table>
+    </div>
 
   </body>
 </html>
