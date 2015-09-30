@@ -15,7 +15,7 @@
     <div ng-controller="BoardCtrl">
       <table>
         <tr ng-repeat="row in board.rows">
-          <td ng-repeat="dot in row.dots" ng-click="dot.hasDot = false; repopulate()">
+          <td ng-repeat="dot in row.dots" ng-click="dot.hasDot = false; repopulate(dot); checkForMatch(dot)">
             <img ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=20px>
             <img ng-if="dot.color=='orange' && dot.hasDot" src="images/orange.svg" height=20px>
             <img ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=20px>
