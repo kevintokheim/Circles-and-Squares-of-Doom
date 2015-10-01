@@ -86,6 +86,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
 
   $scope.mouseUp = function() {
     $scope.clicked = false;
+    $scope.repopulate();
   }
 
 });
