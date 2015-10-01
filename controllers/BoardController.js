@@ -141,7 +141,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     $scope.clicked = false;
     $scope.repopulate();
     if ($scope.counter > 1){
-      var scoreSound = document.getElementById("scoreSound");2
+      var scoreSound = document.getElementById("scoreSound");
       scoreSound.play();
     }
     $scope.counter = 0;
