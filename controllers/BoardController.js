@@ -54,6 +54,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   $scope.hoverXPos;
   $scope.hoverYPos;
   $scope.counter = 0;
+  $scope.score = 0;
 
   $scope.repopulate = function() {
     for(var i = 10; i < 20; i++) {
@@ -93,10 +94,12 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
           $scope.hoverXPos = dot.xPos;
           $scope.hoverYPos = dot.yPos;
           $scope.counter++;
+          $scope.scoreKeeper();
 
 
           //Checking for squares - will delete all dots of the same color when a square is made
           if(($scope.counter>=4) && (Math.abs(dot.xPos - $scope.OGDot.xPos) + Math.abs(dot.yPos - $scope.OGDot.yPos) <= 1)) {
+
             for(var i = 10; i < 20; i++) {
               for(var j = 10; j < 20; j++) {
                 if($scope.board.rows[i].dots[j].color == dot.color){
@@ -104,6 +107,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
                 }
               }
             }
+
           }
 
         } else {
@@ -118,6 +122,17 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     $scope.clicked = false;
     $scope.repopulate();
     $scope.counter = 0;
+  }
+
+  $scope.scoreKeeper = function() {
+    if ($scope.counter <= 2) {
+      $scope.score += 1;
+    } else if ($scope.counter >=3) {
+      $scope.score += $scope.counter;
+    }
+
+    console.log($scope.score);
+    return $scope.score;
   }
 
 });
