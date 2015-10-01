@@ -56,24 +56,37 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   $scope.hoverXPos;
   $scope.hoverYPos;
   $scope.counter = 0;
+  $scope.score = 0;
+  $scope.timerClicked = false;
 
-  $scope.repopulate = function() {
+  //timer
+  $scope.time=30;
+  $scope.timer = function()
+  {
+    $scope.time -= 1;
+    console.log($scope.time);
+  }
+
+  $scope.puppyTimer = function(){
+  setInterval($scope.timer, 1000);
+  }
+
+
+  $scope.repopulate = function(dot) {
     for(var i = 10; i < 20; i++) {
       for(var j = 10; j < 20; j++) {
         if ($scope.board.rows[i].dots[j].hasDot == false){
           $scope.board.rows[i].dots[j].hasDot = true;
           $scope.board.rows[i].dots[j].color = randomColorGenerator();
+          $scope.score++;
+
+          console.log($scope.score);
+
         }
       }
     }
   }
 
-  $scope.checkForMatch = function(dot) {
-    var dotUp = getDot( $scope.board, dot.xPos - 1, dot.yPos);
-    var dotLeft = getDot( $scope.board, dot.xPos, dot.yPos - 1);
-    var dotDown = getDot( $scope.board, dot.xPos + 1, dot.yPos);
-    var dotRight = getDot( $scope.board, dot.xPos, dot.yPos + 1);
-  }
 
   $scope.addClick = function(dot) {
     $scope.clicked = true;
@@ -82,6 +95,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     $scope.hoverYPos = dot.yPos;
     $scope.OGDot = dot;
     $scope.counter++;
+    $scope.repopulate(dot);
   }
 
   $scope.mouseEnter = function(dot) {
@@ -97,17 +111,24 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
           $scope.counter++;
 
 
+
           //Checking for squares - will delete all dots of the same color when a square is made
           if(($scope.counter>=4) && (Math.abs(dot.xPos - $scope.OGDot.xPos) + Math.abs(dot.yPos - $scope.OGDot.yPos) <= 1)) {
+<<<<<<< HEAD
             var squarescore = document.getElementById("squareScore");
             squarescore.play();
+=======
+
+>>>>>>> 0c8e3d6ebfd2f7837ccc818fa464f2185daa5930
             for(var i = 10; i < 20; i++) {
               for(var j = 10; j < 20; j++) {
                 if($scope.board.rows[i].dots[j].color == dot.color){
                   $scope.board.rows[i].dots[j].hasDot = false;
+                  $scope.score++;
                 }
               }
             }
+
           }
 
         } else {
@@ -118,7 +139,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     }
   }
 
-  $scope.mouseUp = function() {
+  $scope.mouseUp = function(dot) {
     $scope.clicked = false;
     $scope.repopulate();
     if ($scope.counter > 1){
@@ -127,5 +148,6 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     }
     $scope.counter = 0;
   }
+
 
 });
