@@ -53,6 +53,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   $scope.clickedColor = "";
   $scope.hoverXPos;
   $scope.hoverYPos;
+  $scope.counter = 0;
 
   $scope.repopulate = function() {
     for(var i = 10; i < 20; i++) {
@@ -78,17 +79,23 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     $scope.hoverXPos = dot.xPos;
     $scope.hoverYPos = dot.yPos;
     $scope.OGDot = dot;
+    $scope.counter++;
   }
 
   $scope.mouseEnter = function(dot) {
+    console.log($scope.counter);
     if ($scope.clicked == true) {
       if((dot.color == $scope.clickedColor) && (dot.hasDot)) {
-        console.log(Math.abs(dot.xPos - $scope.hoverXPos));
         if(Math.abs(dot.xPos - $scope.hoverXPos) + Math.abs(dot.yPos - $scope.hoverYPos) <= 1) {
           dot.hasDot = false;
           $scope.OGDot.hasDot = false;
           $scope.hoverXPos = dot.xPos;
           $scope.hoverYPos = dot.yPos;
+          $scope.counter++;
+
+          if(($scope.counter>=4) && (Math.abs(dot.xPos - $scope.OGDot.xPos) + Math.abs(dot.yPos - $scope.OGDot.yPos) <= 1)) {
+            console.log("square");
+          }
         } else {
           $scope.hoverXPos = 100;
           $scope.hoverYPos = 100;
@@ -100,6 +107,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   $scope.mouseUp = function() {
     $scope.clicked = false;
     $scope.repopulate();
+    $scope.counter = 0;
   }
 
 });
