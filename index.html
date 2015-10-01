@@ -8,6 +8,7 @@
     <script src="app.js"></script>
     <script src="controllers/BoardController.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css"></script>
     <title>Circles and Squares of Doom</title>
   </head>
   <body>
@@ -15,7 +16,7 @@
     <div ng-controller="BoardCtrl">
       <table>
         <tr ng-repeat="row in board.rows">
-          <td ng-repeat="dot in row.dots" ng-click="dot.hasDot = false; repopulate(dot); checkForMatch(dot)">
+          <td ng-repeat="dot in row.dots" ng-click="dot.hasDot = false; repopulate(dot); checkForMatch(dot)" ng-mouseenter="mouseEnter(dot)" ng-mousedown="addClick(dot)" ng-mouseup="mouseUp()">
             <img ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=20px>
             <img ng-if="dot.color=='orange' && dot.hasDot" src="images/orange.svg" height=20px>
             <img ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=20px>
