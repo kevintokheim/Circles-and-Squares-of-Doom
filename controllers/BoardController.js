@@ -94,8 +94,15 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
           $scope.counter++;
 
           if(($scope.counter>=4) && (Math.abs(dot.xPos - $scope.OGDot.xPos) + Math.abs(dot.yPos - $scope.OGDot.yPos) <= 1)) {
-            console.log("square");
+            for(var i = 10; i < 20; i++) {
+              for(var j = 10; j < 20; j++) {
+                if($scope.board.rows[i].dots[j].color == dot.color){
+                  $scope.board.rows[i].dots[j].hasDot = false;
+                }
+              }
+            }
           }
+
         } else {
           $scope.hoverXPos = 100;
           $scope.hoverYPos = 100;
