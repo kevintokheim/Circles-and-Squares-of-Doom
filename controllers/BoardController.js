@@ -56,23 +56,22 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   $scope.counter = 0;
   $scope.score = 0;
 
-  $scope.repopulate = function() {
+
+  $scope.repopulate = function(dot) {
     for(var i = 10; i < 20; i++) {
       for(var j = 10; j < 20; j++) {
         if ($scope.board.rows[i].dots[j].hasDot == false){
           $scope.board.rows[i].dots[j].hasDot = true;
           $scope.board.rows[i].dots[j].color = randomColorGenerator();
+          $scope.score++;
+
+          console.log($scope.score);
+
         }
       }
     }
   }
 
-  $scope.checkForMatch = function(dot) {
-    var dotUp = getDot( $scope.board, dot.xPos - 1, dot.yPos);
-    var dotLeft = getDot( $scope.board, dot.xPos, dot.yPos - 1);
-    var dotDown = getDot( $scope.board, dot.xPos + 1, dot.yPos);
-    var dotRight = getDot( $scope.board, dot.xPos, dot.yPos + 1);
-  }
 
   $scope.addClick = function(dot) {
     $scope.clicked = true;
@@ -81,6 +80,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     $scope.hoverYPos = dot.yPos;
     $scope.OGDot = dot;
     $scope.counter++;
+    $scope.repopulate(dot);
   }
 
   $scope.mouseEnter = function(dot) {
@@ -94,7 +94,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
           $scope.hoverXPos = dot.xPos;
           $scope.hoverYPos = dot.yPos;
           $scope.counter++;
-          $scope.scoreKeeper();
+
 
 
           //Checking for squares - will delete all dots of the same color when a square is made
@@ -104,6 +104,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
               for(var j = 10; j < 20; j++) {
                 if($scope.board.rows[i].dots[j].color == dot.color){
                   $scope.board.rows[i].dots[j].hasDot = false;
+                  $scope.score++;
                 }
               }
             }
@@ -118,21 +119,11 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     }
   }
 
-  $scope.mouseUp = function() {
+  $scope.mouseUp = function(dot) {
     $scope.clicked = false;
     $scope.repopulate();
     $scope.counter = 0;
   }
 
-  $scope.scoreKeeper = function() {
-    if ($scope.counter <= 2) {
-      $scope.score += 1;
-    } else if ($scope.counter >=3) {
-      $scope.score += $scope.counter;
-    }
-
-    console.log($scope.score);
-    return $scope.score;
-  }
 
 });

@@ -16,7 +16,7 @@
     <div ng-controller="BoardCtrl">
       <table>
         <tr ng-repeat="row in board.rows">
-          <td ng-repeat="dot in row.dots" ng-click="repopulate(dot)" ng-mouseenter="mouseEnter(dot)" ng-mousedown="addClick(dot)" ng-mouseup="mouseUp()">
+          <td ng-repeat="dot in row.dots"  ng-mouseenter="mouseEnter(dot); checkForSquare(dot)" ng-mousedown="addClick(dot)" ng-mouseup="mouseUp(dot)">
             <img ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=20px>
             <img ng-if="dot.color=='orange' && dot.hasDot" src="images/orange.svg" height=20px>
             <img ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=20px>
