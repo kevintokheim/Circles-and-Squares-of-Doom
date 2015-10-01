@@ -12,6 +12,9 @@
     <title>Circles and Squares of Doom</title>
   </head>
   <body>
+    <audio id="scoreSound" src="sounds/score.wav"></audio>
+    <audio id="squareScore" src="sounds/bubbling.wav"></audio>
+    <audio id="soundTrack" src="sounds/coastal.mp3"></audio>
 <h1>Circles and Squares of Doom</h1>
     <div ng-controller="BoardCtrl">
       <table>
@@ -22,7 +25,7 @@
             <img ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=20px>
             <img ng-if="dot.color=='green' && dot.hasDot" src="images/green.svg" height=20px>
             <img ng-if="dot.color=='blue' && dot.hasDot" src="images/blue.svg" height=20px>
-            <img ng-if="!dot.hasDot" src="blank.png" height=20px>
+            <img ng-if="!dot.hasDot" src="blank2.jpg" height=20px>
           </td>
         </tr>
       </table>
