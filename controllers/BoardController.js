@@ -55,6 +55,19 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   $scope.hoverYPos;
   $scope.counter = 0;
   $scope.score = 0;
+  $scope.timerClicked = false;
+
+  //timer
+  $scope.time=30;
+  $scope.timer = function()
+  {
+    $scope.time -= 1;
+    console.log($scope.time);
+  }
+
+  $scope.puppyTimer = function(){
+  setInterval($scope.timer, 1000);
+  }
 
 
   $scope.repopulate = function(dot) {
