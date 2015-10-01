@@ -85,6 +85,8 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
 
   $scope.mouseEnter = function(dot) {
     if ($scope.clicked == true) {
+
+      //Prevents user from changing the colors of dots that are not in the line or square
       if((dot.color == $scope.clickedColor) && (dot.hasDot)) {
         if(Math.abs(dot.xPos - $scope.hoverXPos) + Math.abs(dot.yPos - $scope.hoverYPos) <= 1) {
           dot.hasDot = false;
@@ -94,8 +96,20 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
           $scope.counter++;
           $scope.scoreKeeper();
 
+
+          //Checking for squares - will delete all dots of the same color when a square is made
           if(($scope.counter>=4) && (Math.abs(dot.xPos - $scope.OGDot.xPos) + Math.abs(dot.yPos - $scope.OGDot.yPos) <= 1)) {
+
+            for(var i = 10; i < 20; i++) {
+              for(var j = 10; j < 20; j++) {
+                if($scope.board.rows[i].dots[j].color == dot.color){
+                  $scope.board.rows[i].dots[j].hasDot = false;
+                }
+              }
+            }
+
           }
+
         } else {
           $scope.hoverXPos = 100;
           $scope.hoverYPos = 100;
@@ -116,7 +130,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     } else if ($scope.counter >=3) {
       $scope.score += $scope.counter;
     }
-    
+
     console.log($scope.score);
     return $scope.score;
   }
