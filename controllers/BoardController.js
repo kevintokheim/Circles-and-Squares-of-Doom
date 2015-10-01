@@ -51,6 +51,8 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   placeInitialDots($scope.board);
   $scope.clicked = false;
   $scope.clickedColor = "";
+  $scope.hoverXPos;
+  $scope.hoverYPos;
 
   $scope.repopulate = function() {
     for(var i = 10; i < 20; i++) {
@@ -73,19 +75,31 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   $scope.addClick = function(dot) {
     $scope.clicked = true;
     $scope.clickedColor = dot.color;
-    console.log(dot.color);
+    $scope.hoverXPos = dot.xPos;
+    $scope.hoverYPos = dot.yPos;
+    $scope.OGDot = dot;
   }
 
   $scope.mouseEnter = function(dot) {
     if ($scope.clicked == true) {
-      if(dot.color == $scope.clickedColor) {
-        dot.hasDot = false;
+      if((dot.color == $scope.clickedColor) && (dot.hasDot)) {
+        console.log(Math.abs(dot.xPos - $scope.hoverXPos));
+        if(Math.abs(dot.xPos - $scope.hoverXPos) + Math.abs(dot.yPos - $scope.hoverYPos) <= 1) {
+          dot.hasDot = false;
+          $scope.OGDot.hasDot = false;
+          $scope.hoverXPos = dot.xPos;
+          $scope.hoverYPos = dot.yPos;
+        } else {
+          $scope.hoverXPos = 100;
+          $scope.hoverYPos = 100;
+        }
       }
     }
   }
 
   $scope.mouseUp = function() {
     $scope.clicked = false;
+    $scope.repopulate();
   }
 
 });
