@@ -54,6 +54,7 @@ function placeInitialDots(board) {
 
 circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   var soundTrack = document.getElementById("soundTrack");
+  soundTrack.loop = true;
   soundTrack.play();
   $scope.clicked = false;
   $scope.board = createBoard();
@@ -103,9 +104,11 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
 
           //Checking for squares - will delete all dots on the board of the same color when a square is made
           if(($scope.counter>=4) && (Math.abs(dot.xPos - $scope.OGDot.xPos) + Math.abs(dot.yPos - $scope.OGDot.yPos) <= 1)) {
+            
             //plays square sound
             var squarescore = document.getElementById("squareScore");
             squarescore.play();
+
             //deletes all dots of one color when a square is made
             for(var i = 10; i < 20; i++) {
               for(var j = 10; j < 20; j++) {
