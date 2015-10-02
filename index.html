@@ -7,6 +7,7 @@
     <script src="lib/angular-ui-router.js"></script>
     <script src="app.js"></script>
     <script src="controllers/BoardController.js"></script>
+    <script src="controllers/TimerController.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css"></script>
     <title>Circles and Squares of Doom</title>
@@ -18,6 +19,7 @@
 <h1>Circles and Squares of Doom</h1>
     <div ng-controller="BoardCtrl">
       <table>
+        <!-- playing board -->
         <tr ng-repeat="row in board.rows">
           <td ng-repeat="dot in row.dots" ng-mouseenter="mouseEnter(dot); checkForSquare(dot)" ng-mousedown="addClick(dot)" ng-mouseup="mouseUp(dot)">
             <img ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=20px>
@@ -30,10 +32,13 @@
         </tr>
       </table>
       <div>
-        <button ng-click="puppyTimer()" ng-disabled="timerClicked">START</button>
         <h1>Current Score: {{score}}</h1>
-        <h1>Time {{time}}</h1>
       </div>
+    </div>
+    <div ng-controller="TimerCtrl">
+      <h1>Time {{time}}</h1>
+        <button ng-click="puppyTimer()" ng-disabled="timerClicked">START</button>
+
     </div>
 
 
