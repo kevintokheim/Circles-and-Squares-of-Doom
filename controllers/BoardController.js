@@ -1,3 +1,6 @@
+//creates board(grid) object
+// with a rows[] array containing row{} objects.
+//each row{} object has a dots array[] which contain dot objects
 function createBoard() {
   var board = {};
   board.rows = [];
@@ -16,6 +19,7 @@ function createBoard() {
   return board;
 };
 
+//generates random color and returns that color
 function randomColorGenerator() {
   var number = Math.round(Math.random() * 4);
   var color = "";
@@ -29,11 +33,13 @@ function randomColorGenerator() {
   return color;
 }
 
+//gets the position of a dot, returns that dot object
 function getDot(board, row, column) {
   return board.rows[row].dots[column];
 }
 
-
+//populates the board on start
+//changes all dots within range to hasDot = true
 function placeInitialDots(board) {
   for(var i = 10; i < 20; i++) {
     for(var j = 10; j < 20; j++) {
@@ -49,29 +55,17 @@ function placeInitialDots(board) {
 circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   var soundTrack = document.getElementById("soundTrack");
   soundTrack.play();
+  $scope.clicked = false;
   $scope.board = createBoard();
   placeInitialDots($scope.board);
-  $scope.clicked = false;
   $scope.clickedColor = "";
   $scope.hoverXPos;
   $scope.hoverYPos;
   $scope.counter = 0;
   $scope.score = 0;
-  $scope.timerClicked = false;
-
-  //timer
-  $scope.time=30;
-  $scope.timer = function()
-  {
-    $scope.time -= 1;
-    console.log($scope.time);
-  }
-
-  $scope.puppyTimer = function(){
-  setInterval($scope.timer, 1000);
-  }
 
 
+//repopulates by finding any open dots on board and "generating" new dots.
   $scope.repopulate = function(dot) {
     for(var i = 10; i < 20; i++) {
       for(var j = 10; j < 20; j++) {
@@ -79,15 +73,12 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
           $scope.board.rows[i].dots[j].hasDot = true;
           $scope.board.rows[i].dots[j].color = randomColorGenerator();
           $scope.score++;
-
-          console.log($scope.score);
-
         }
       }
     }
   }
 
-
+//makes the magic happen Steven?
   $scope.addClick = function(dot) {
     $scope.clicked = true;
     $scope.clickedColor = dot.color;
@@ -97,7 +88,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     $scope.counter++;
     $scope.repopulate(dot);
   }
-
+  //mouse holddown functionality
   $scope.mouseEnter = function(dot) {
     if ($scope.clicked == true) {
 
@@ -110,16 +101,12 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
           $scope.hoverYPos = dot.yPos;
           $scope.counter++;
 
-
-
-          //Checking for squares - will delete all dots of the same color when a square is made
+          //Checking for squares - will delete all dots on the board of the same color when a square is made
           if(($scope.counter>=4) && (Math.abs(dot.xPos - $scope.OGDot.xPos) + Math.abs(dot.yPos - $scope.OGDot.yPos) <= 1)) {
-<<<<<<< HEAD
+            //plays square sound
             var squarescore = document.getElementById("squareScore");
             squarescore.play();
-=======
-
->>>>>>> 0c8e3d6ebfd2f7837ccc818fa464f2185daa5930
+            //deletes all dots of one color when a square is made
             for(var i = 10; i < 20; i++) {
               for(var j = 10; j < 20; j++) {
                 if($scope.board.rows[i].dots[j].color == dot.color){
@@ -128,8 +115,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
                 }
               }
             }
-
-          }
+          } //end checksquare if
 
         } else {
           $scope.hoverXPos = 100;
@@ -138,7 +124,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
       }
     }
   }
-
+  //mouse unclick, repopulate, plays sound, sets counter to 0
   $scope.mouseUp = function(dot) {
     $scope.clicked = false;
     $scope.repopulate();
