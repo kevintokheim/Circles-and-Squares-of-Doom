@@ -51,11 +51,7 @@ function placeInitialDots(board) {
   }
 }
 
-
 circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
-  var soundTrack = document.getElementById("soundTrack");
-  soundTrack.loop = true;
-  // soundTrack.play();
   $scope.clicked = false;
   $scope.board = createBoard();
   placeInitialDots($scope.board);
@@ -155,12 +151,26 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
         $scope.repopulate();
       }
     }
-    if ($scope.counter > 1){
+    if (($scope.counter > 1) && ($scope.counter < 4)){
       var scoreSound = document.getElementById("scoreSound");
       scoreSound.play();
     }
+    if ($scope.counter >= 4) {
+      var scoreSound2 = document.getElementById("scoreSound2");
+      scoreSound2.play();
+    }
+
     $scope.counter = 0;
   }
 
 
+  $scope.playSoundtrack = function() {
+    var soundTrack = document.getElementById("soundTrack");
+    soundTrack.loop = true;
+    if (soundTrack.paused) {
+      soundTrack.play();
+    } else {
+      soundTrack.pause();
+    }
+  }
 });

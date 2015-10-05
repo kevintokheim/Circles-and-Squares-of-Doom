@@ -13,11 +13,13 @@
     <title>Circles and Squares of Doom</title>
   </head>
   <body>
-    <audio id="scoreSound" src="sounds/score.wav"></audio>
+    <audio id="scoreSound" src="sounds/coin.wav"></audio>
+    <audio id="scoreSound2" src="sounds/levelup.wav"></audio>
     <audio id="squareScore" src="sounds/bubbling.wav"></audio>
     <audio id="soundTrack" src="sounds/coastal.mp3"></audio>
 <h1>Circles and Squares of Doom</h1>
     <div ng-controller="BoardCtrl">
+      <button ng-click="playSoundtrack()" name="Music">Music</button>
       <table>
         <!-- playing board -->
         <tr ng-repeat="row in board.rows">
