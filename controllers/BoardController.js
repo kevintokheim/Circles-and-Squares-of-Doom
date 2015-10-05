@@ -79,15 +79,18 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     }
   }
 
+//checks for a dot above the empty spot and moves it down
   $scope.dotDrop = function(dot) {
     for(var i = 10; i < 20; i++) {
       for(var j = 10; j < 20; j++) {
+        //if the current position is empty and the position above is not empty...
         if (($scope.board.rows[i].dots[j].hasDot == false) && ($scope.board.rows[i-1].dots[j].hasDot != false)) {
-          var tempSpot = $scope.board.rows[i-1].dots[j].hasDot;
-          $scope.board.rows[i].dots[j].hasDot = tempSpot;
-          $scope.board.rows[i-1].dots[j].hasDot = false;
+          //sets the empty hasDot spot to true
+          $scope.board.rows[i].dots[j].hasDot = true;
+          //sets the spot to the color of the spot directly above.
           $scope.board.rows[i].dots[j].color = $scope.board.rows[i-1].dots[j].color;
-
+          //sets the spot directly above to false making an empty spot.
+          $scope.board.rows[i-1].dots[j].hasDot = false;
         }
       }
     }
@@ -145,6 +148,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   //mouse unclick, repopulate, plays sound, sets counter to 0
   $scope.mouseUp = function(dot) {
     $scope.clicked = false;
+    //check each position, drop the dots all down and repopulate the top row
     for(var i = 10; i < 20; i++) {
       for(var j = 10; j < 20; j++) {
         $scope.dotDrop();
