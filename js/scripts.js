@@ -5,8 +5,10 @@ $(document).ready(function(){
   });
 
   var timerValue = function() {
-    while(i <= 31)
-    $(".timerValue").text();
-    console.log(timerValue);
+    while(i <= 31) {
+      $(".timerValue").text();
+      console.log(timerValue);
+
+    }
   }
 });
