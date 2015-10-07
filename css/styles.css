@@ -3,3 +3,7 @@ img {
   -moz-user-select: none;
   -webkit-user-drag: none;
 }
+
+#timer {
+  background-color: black;
+}

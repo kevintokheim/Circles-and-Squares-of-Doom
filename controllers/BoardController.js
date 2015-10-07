@@ -92,18 +92,18 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
         }
       }
     }
-  }
+    }
 
-  $scope.dropInterval = function() {
-    var intervalID = setInterval($scope.delayDrop(), 1000);
-    $scope.repopulate();
-  }
+  // $scope.dropInterval = function() {
+  //   var intervalID = setInterval($scope.dotDrop, 1000);
+  //   // $scope.repopulate();
+  // }
 
-  $scope.delayDrop = function() {
-    var timeoutID = window.setTimeout($scope.dotDrop, 1000);
-    // $scope.repopulate();
-
-  }
+  // $scope.delayDrop = function() {
+  //   var timeoutID = window.setTimeout($scope.dotDrop, 200);
+  //   // $scope.repopulate();
+  //
+  // }
     // $scope.delayDrop = function() {
     //   $("table-drop").animate({right: '2000px'}, 2000)
     // }
@@ -170,10 +170,10 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     //check each position, drop the dots all down and repopulate the top row
     for(var i = 10; i < 20; i++) {
       for(var j = 10; j < 20; j++) {
-        // $scope.dotDrop();
+        $scope.dotDrop();
         // $scope.delayDrop();
-        // $scope.repopulate();
-        $scope.dropInterval();
+        $scope.repopulate();
+        // $scope.dropInterval();
       }
     }
     if (($scope.counter > 1) && ($scope.counter < 4)){
@@ -198,4 +198,6 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
       soundTrack.pause();
     }
   }
+
+
 });
