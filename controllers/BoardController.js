@@ -92,6 +92,19 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     }
   }
 
+//timer
+  $scope.timerClicked = false;
+  $scope.time=30;
+
+  $scope.timer = function()
+  {
+    $scope.time -= 1;
+    console.log($scope.time);
+  }
+
+  $scope.countdown = function(){
+  setInterval($scope.timer, 1000);
+  }
 
 //makes the magic happen Steven?
   $scope.addClick = function(dot) {

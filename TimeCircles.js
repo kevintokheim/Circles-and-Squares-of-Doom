@@ -814,17 +814,17 @@
         start_angle: 0,
         time: {
             Days: {
-                show: true,
+                show: false,
                 text: "Days",
                 color: "#FC6"
             },
             Hours: {
-                show: true,
+                show: false,
                 text: "Hours",
                 color: "#9CF"
             },
             Minutes: {
-                show: true,
+                show: false,
                 text: "Minutes",
                 color: "#BFB"
             },

@@ -23,7 +23,7 @@
 <h1>Circles and Squares of Doom</h1>
     <div ng-controller="BoardCtrl">
       <button ng-click="playSoundtrack()" name="Music">Music</button>
-      <button ng-click="showme=true; timer">Start</button>
+      <button id="timerStart" ng-click="showme=true; countdown()">Start</button>
       <div ng-show="showme">
         <table>
           <!-- playing board -->
@@ -43,9 +43,9 @@
         </div>
 
 
-        <div timer data-timer = "30"></div>
       </div>
     </div>
+        <div class="timer" data-timer = "31"></div>
 
     <!-- <div ng-controller="TimerCtrl"> -->
       <!-- <h1>Time {{time}}</h1> -->

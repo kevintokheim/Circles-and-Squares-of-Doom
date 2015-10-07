@@ -4,6 +4,7 @@ img {
   -webkit-user-drag: none;
 }
 
-#timer {
-  background-color: black;
+.timer {
+  height: 10%;
+  width: 20%;
 }
