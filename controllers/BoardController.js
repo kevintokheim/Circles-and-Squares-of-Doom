@@ -94,12 +94,14 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
 
 //timer
   $scope.timerClicked = false;
+
+  // $scope.time = $(".timerValue").text();
   $scope.time=30;
 
   $scope.timer = function()
   {
     $scope.time -= 1;
-    console.log($scope.time);
+  console.log($scope.time);
   }
 
   $scope.countdown = function(){

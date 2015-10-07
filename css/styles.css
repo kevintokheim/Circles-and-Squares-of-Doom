@@ -5,6 +5,6 @@ img {
 }
 
 .timer {
-  height: 10%;
-  width: 20%;
+  height: auto;
+  width: 100%;
 }

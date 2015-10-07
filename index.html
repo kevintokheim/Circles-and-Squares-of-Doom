@@ -8,7 +8,6 @@
     <script src="js/scripts.js"></script>
     <script type="text/javascript" src="TimeCircles.js"></script>
     <script src="app.js"></script>
-    <script src="directives/TimerDirective.js"></script>
     <script src="controllers/BoardController.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="TimeCircles.css">
@@ -41,19 +40,9 @@
         <div>
           <h1>Current Score: {{score}}</h1>
         </div>
-
-
+        <form class="timer" data-timer = "31"></form>
       </div>
     </div>
-        <div class="timer" data-timer = "31"></div>
-
-    <!-- <div ng-controller="TimerCtrl"> -->
-      <!-- <h1>Time {{time}}</h1> -->
-      <!-- <div id = "timer-circle">
-      </div>
-        <button ng-click="puppyTimer()" ng-disabled="timerClicked">START</button>
-
-    </div> -->
 
 
   </body>
