@@ -87,11 +87,34 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
           $scope.board.rows[i].dots[j].color = $scope.board.rows[i-1].dots[j].color;
           //sets the spot directly above to false making an empty spot.
           $scope.board.rows[i-1].dots[j].hasDot = false;
+          // $scope.delayDrop();
+          // $scope.repopulate();
         }
       }
     }
   }
 
+  $scope.dropInterval = function() {
+    var intervalID = setInterval($scope.delayDrop(), 1000);
+    $scope.repopulate();
+  }
+
+  $scope.delayDrop = function() {
+    var timeoutID = window.setTimeout($scope.dotDrop, 1000);
+    // $scope.repopulate();
+
+  }
+    // $scope.delayDrop = function() {
+    //   $("table-drop").animate({right: '2000px'}, 2000)
+    // }
+  // $scope.delayDrop = function(milliseconds) {
+  //   var start = new Date().getTime();
+  //   for (var i=0; i < 1e5; i++) {
+  //     if ((new Date().getTime() - start) > milliseconds) {
+  //       break;
+  //     }
+  //   }
+  // }
 
 //makes the magic happen Steven?
   $scope.addClick = function(dot) {
@@ -147,8 +170,10 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     //check each position, drop the dots all down and repopulate the top row
     for(var i = 10; i < 20; i++) {
       for(var j = 10; j < 20; j++) {
-        $scope.dotDrop();
-        $scope.repopulate();
+        // $scope.dotDrop();
+        // $scope.delayDrop();
+        // $scope.repopulate();
+        $scope.dropInterval();
       }
     }
     if (($scope.counter > 1) && ($scope.counter < 4)){

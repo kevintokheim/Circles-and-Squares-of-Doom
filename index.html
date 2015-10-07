@@ -1,37 +1,40 @@
 <!DOCTYPE html>
-<html ng-app= "circlesSquares">
-  <head>
-    <meta charset="UTF-8">
-    <script src="js/jquery-1.11.3.js"></script>
-    <script src="lib/angular.js"></script>
-    <script src="lib/angular-ui-router.js"></script>
-    <script src="app.js"></script>
-    <script src="controllers/BoardController.js"></script>
-    <script src="controllers/TimerController.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/styles.css"></script>
-    <title>Circles and Squares of Doom</title>
-  </head>
-  <body>
+<html ng-app="circlesSquares">
+<head>
+  <meta charset="UTF-8">
+  <script src="js/jquery-1.11.3.js"></script>
+  <script src="lib/angular.js"></script>
+  <script src="lib/angular-ui-router.js"></script>
+  <script src="app.js"></script>
+  <script src="controllers/BoardController.js"></script>
+  <script src="controllers/TimerController.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Circles and Squares of Doom</title>
+</head>
+
+<body>
+  <div class="container">
+
     <audio id="scoreSound" src="sounds/coin.wav"></audio>
     <audio id="scoreSound2" src="sounds/levelup.wav"></audio>
     <audio id="squareScore" src="sounds/bubbling.wav"></audio>
     <audio id="soundTrack" src="sounds/coastal.mp3"></audio>
-<h1>Circles and Squares of Doom</h1>
+    <h1>Circles and Squares of Doom</h1>
     <div ng-controller="BoardCtrl">
       <button ng-click="playSoundtrack()" name="Music">Music</button>
       <table>
         <!-- playing board -->
-        <tr ng-repeat="row in board.rows">
+        <div class="tableDrop" style="position:absolute"><tr ng-repeat="row in board.rows">
           <td ng-repeat="dot in row.dots" ng-mouseenter="mouseEnter(dot); checkForSquare(dot)" ng-mousedown="addClick(dot)" ng-mouseup="mouseUp(dot)">
             <img ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=20px>
             <img ng-if="dot.color=='orange' && dot.hasDot" src="images/orange.svg" height=20px>
             <img ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=20px>
             <img ng-if="dot.color=='green' && dot.hasDot" src="images/green.svg" height=20px>
             <img ng-if="dot.color=='blue' && dot.hasDot" src="images/blue.svg" height=20px>
-            <img ng-if="!dot.hasDot" src="blank2.jpg" height=20px>
+            <img ng-if="!dot.hasDot" src="images/blank2.jpg" height=20px>
           </td>
-        </tr>
+        </tr> </div>
       </table>
       <div>
         <h1>Current Score: {{score}}</h1>
@@ -39,10 +42,11 @@
     </div>
     <div ng-controller="TimerCtrl">
       <h1>Time {{time}}</h1>
-        <button ng-click="puppyTimer()" ng-disabled="timerClicked">START</button>
+      <button ng-click="puppyTimer()" ng-disabled="timerClicked">START</button>
 
     </div>
 
+  </div>
+</body>
 
-  </body>
 </html>
