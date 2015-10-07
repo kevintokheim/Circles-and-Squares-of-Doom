@@ -173,4 +173,6 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
       soundTrack.pause();
     }
   }
+
+
 });
