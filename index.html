@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <script src="js/jquery-1.11.3.js"></script>
+    <script type="text/javascript" scr="TimeCircles/inc/TimeCircles.js"></script>
     <script src="lib/angular.js"></script>
     <script src="lib/angular-ui-router.js"></script>
     <script src="app.js"></script>
     <script src="controllers/BoardController.js"></script>
     <script src="controllers/TimerController.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/styles.css"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="TimeCircles/inc/TimeCircles.css">
     <title>Circles and Squares of Doom</title>
   </head>
   <body>
@@ -37,11 +39,14 @@
         <h1>Current Score: {{score}}</h1>
       </div>
     </div>
-    <div ng-controller="TimerCtrl">
-      <h1>Time {{time}}</h1>
+    <div id = "timer"></div>
+    <!-- <div ng-controller="TimerCtrl"> -->
+      <!-- <h1>Time {{time}}</h1> -->
+      <!-- <div id = "timer-circle">
+      </div>
         <button ng-click="puppyTimer()" ng-disabled="timerClicked">START</button>
 
-    </div>
+    </div> -->
 
 
   </body>

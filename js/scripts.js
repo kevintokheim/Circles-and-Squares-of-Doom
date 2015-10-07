@@ -20,6 +20,9 @@ Dot.prototype.dotGenerator = function(){
   }
 }
 
+$("#timer").TimeCircles();
+console.log("#timer");
+
 // function dotLoop(){
 //   for(var i = 0; i < gridArray.length; i++){
 //     dotGenerator;
