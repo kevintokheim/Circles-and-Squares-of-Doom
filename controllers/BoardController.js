@@ -87,10 +87,11 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
           $scope.board.rows[i].dots[j].color = $scope.board.rows[i-1].dots[j].color;
           //sets the spot directly above to false making an empty spot.
           $scope.board.rows[i-1].dots[j].hasDot = false;
-        }
+                }
       }
     }
   }
+
 
 
 //makes the magic happen Steven?
@@ -148,7 +149,9 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
     for(var i = 10; i < 20; i++) {
       for(var j = 10; j < 20; j++) {
         $scope.dotDrop();
+        // $scope.delayDrop();
         $scope.repopulate();
+        // $scope.dropInterval();
       }
     }
     if (($scope.counter > 1) && ($scope.counter < 4)){
@@ -173,4 +176,6 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
       soundTrack.pause();
     }
   }
+
+
 });
