@@ -107,13 +107,22 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   $scope.timer = function()
   {
     $scope.time -= 1;
-  // console.log($scope.time);
+    if($scope.time == 25){
+      $scope.boardIncrease();
+      console.log(boardMax);
+    }
+  console.log($scope.time);
   }
 
   $scope.countdown = function(){
   setInterval($scope.timer, 1000);
   }
 
+$scope.boardIncrease = function() {
+    boardMax++;
+    createBoard();
+    placeInitialDots();
+}
 
 //makes the magic happen Steven?
   $scope.addClick = function(dot) {
