@@ -1,15 +1,21 @@
 //creates board(grid) object
 // with a rows[] array containing row{} objects.
 //each row{} object has a dots array[] which contain dot objects
+var boardMin = 0;
+var boardMax = 10;
+
+var dotMin = 0;
+var dotMax = 10;
+
 function createBoard() {
   var board = {};
   board.rows = [];
 
-  for(var i = 0; i < 30; i++) {
+  for(var i = boardMin; i < boardMax; i++) {
     var row = {};
     row.dots = [];
 
-    for(var j = 0; j < 30; j++) {
+    for(var j = boardMin; j < boardMax; j++) {
       var dot = {};
       dot.hasDot = false;
       row.dots.push(dot);
@@ -41,8 +47,8 @@ function getDot(board, row, column) {
 //populates the board on start
 //changes all dots within range to hasDot = true
 function placeInitialDots(board) {
-  for(var i = 10; i < 20; i++) {
-    for(var j = 10; j < 20; j++) {
+  for(var i = dotMin; i < dotMax; i++) {
+    for(var j = dotMin; j < dotMax; j++) {
       board.rows[i].dots[j].hasDot = true;
       board.rows[i].dots[j].xPos = j;
       board.rows[i].dots[j].yPos = i;
@@ -64,8 +70,8 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
 
 //repopulates by looking at top row of the board and "generating" new dots.
   $scope.repopulate = function(dot) {
-    for(var i = 10; i < 11; i++) {
-      for(var j = 10; j < 20; j++) {
+    for(var i = dotMin; i < dotMin + 1; i++) {
+      for(var j = dotMin; j < dotMax; j++) {
         if ($scope.board.rows[i].dots[j].hasDot == false){
           $scope.board.rows[i].dots[j].hasDot = true;
           $scope.board.rows[i].dots[j].color = randomColorGenerator();
@@ -77,10 +83,10 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
 
 //checks for a dot above the empty spot and moves it down
   $scope.dotDrop = function(dot) {
-    for(var i = 10; i < 20; i++) {
-      for(var j = 10; j < 20; j++) {
+    for(var i = dotMin; i < dotMax; i++) {
+      for(var j = dotMin; j < dotMax; j++) {
         //if the current position is empty and the position above is not empty...
-        if (($scope.board.rows[i].dots[j].hasDot == false) && ($scope.board.rows[i-1].dots[j].hasDot != false)) {
+        if (($scope.board.rows[i].dots[j].hasDot == false) && ($scope.board.rows[dotMin].dots[j].hasDot != false)) {
           //sets the empty hasDot spot to true
           $scope.board.rows[i].dots[j].hasDot = true;
           //sets the spot to the color of the spot directly above.
@@ -101,7 +107,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   $scope.timer = function()
   {
     $scope.time -= 1;
-  console.log($scope.time);
+  // console.log($scope.time);
   }
 
   $scope.countdown = function(){
@@ -139,8 +145,8 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
             squarescore.play();
 
             //deletes all dots of one color when a square is made
-            for(var i = 10; i < 20; i++) {
-              for(var j = 10; j < 20; j++) {
+            for(var i = dotMin; i < dotMax; i++) {
+              for(var j = dotMin; j < dotMax; j++) {
                 if($scope.board.rows[i].dots[j].color == dot.color){
                   $scope.board.rows[i].dots[j].hasDot = false;
                   $scope.score++;
@@ -160,8 +166,8 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   $scope.mouseUp = function(dot) {
     $scope.clicked = false;
     //check each position, drop the dots all down and repopulate the top row
-    for(var i = 10; i < 20; i++) {
-      for(var j = 10; j < 20; j++) {
+    for(var i = dotMin; i < dotMax; i++) {
+      for(var j = dotMin; j < dotMax; j++) {
         $scope.dotDrop();
         $scope.repopulate();
       }

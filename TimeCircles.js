@@ -411,7 +411,9 @@
             numberElement.css("line-height", Math.round(this.config.text_size * this.data.attributes.item_size) + "px");
             numberElement.appendTo(textElement);
 
+
             this.data.text_elements[key] = numberElement;
+
         }
 
         this.start();
@@ -424,7 +426,9 @@
         this.data.interval_fallback = useWindow.setInterval(function(){
             _this.update.call(_this, true);
         }, 100);
+
     };
+
 
     TC_Instance.prototype.update = function(nodraw) {
         if(typeof nodraw === "undefined") {
@@ -461,6 +465,7 @@
                     this.drawArc(x, y, color, 0);
                 }
                 this.stop();
+
                 return;
             }
         }
