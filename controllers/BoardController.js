@@ -2,10 +2,14 @@
 // with a rows[] array containing row{} objects.
 //each row{} object has a dots array[] which contain dot objects
 var boardMin = 0;
-var boardMax = 10;
+var boardMax = 8;
 
 var dotMin = 0;
-var dotMax = 10;
+var dotMax = 8;
+
+$(document).on("click", "#timerStart", function() {
+  console.log("it wordks");
+})
 
 function createBoard() {
   var board = {};

@@ -18,6 +18,8 @@
   </head>
   <body>
     <div class="container">
+      <div class="row">
+        <div class="col-md-4">
     <audio id="scoreSound" src="sounds/coin.wav"></audio>
     <audio id="scoreSound2" src="sounds/levelup.wav"></audio>
     <audio id="squareScore" src="sounds/bubbling.wav"></audio>
@@ -37,7 +39,7 @@
               <img class="animated slideInDown" ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=40px>
               <img class="animated slideInDown" ng-if="dot.color=='green' && dot.hasDot" src="images/green.svg" height=40px>
               <img class="animated slideInDown" ng-if="dot.color=='blue' && dot.hasDot" src="images/blue.svg" height=40px>
-              <img ng-if="!dot.hasDot" src="images/blank2.jpg" height=20px>
+              <!-- <img ng-if="!dot.hasDot" src="images/blank2.jpg" height=20px> -->
             </td>
           </tr>
         </table>
@@ -47,7 +49,11 @@
         <form class="timer" data-timer = "31"></form>
       </div>
     </div>
-
+  </div>
+  <div class="col-md-6">
+    <!-- <img src="walkingDragon.gif" alt="draggon"> -->
+    <img src="fireDragon.gif" alt="fire" height=700px>
+  </div>
 
   </div>
 </div>
