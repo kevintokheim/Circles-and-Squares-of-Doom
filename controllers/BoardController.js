@@ -1,110 +1,34 @@
-//creates board(grid) object
-// with a rows[] array containing row{} objects.
-//each row{} object has a dots array[] which contain dot objects
-var boardMin = 0;
-var boardMax = 10;
-
-var dotMin = 0;
-var dotMax = 10;
-
-var time=30;
-//timer
-
-
-  $(document).on('click', '#timerStart', function(){
-    setInterval(timer, 1000);
-  });
-
-  function timer()
-  {
-    time -= 1;
-    if(time == 25){
-      boardIncrease();
-      return time;
-      console.log(boardMax);
-    }
-  // console.log(time);
-  }
-  
-function boardIncrease() {
-    boardMax++;
-    createBoard();
-    placeInitialDots();
-}
-/////////////////////
-function createBoard() {
-  var board = {};
-  board.rows = [];
-
-  for(var i = boardMin; i < boardMax; i++) {
-    var row = {};
-    row.dots = [];
-
-    for(var j = boardMin; j < boardMax; j++) {
-      var dot = {};
-      dot.hasDot = false;
-      row.dots.push(dot);
-    }
-    board.rows.push(row);
-  }
-  return board;
-};
-
-//generates random color and returns that color
-function randomColorGenerator() {
-  var number = Math.round(Math.random() * 4);
-  var color = "";
-  switch(number) {
-    case 0: color = "red"; break;
-    case 1: color = "orange"; break;
-    case 2: color = "yellow"; break;
-    case 3: color = "green"; break;
-    case 4: color = "blue"; break;
-  }
-  return color;
-}
-
-//gets the position of a dot, returns that dot object
-function getDot(board, row, column) {
-  return board.rows[row].dots[column];
-}
-
-//populates the board on start
-//changes all dots within range to hasDot = true
-function placeInitialDots(board) {
-  for(var i = dotMin; i < dotMax; i++) {
-    for(var j = dotMin; j < dotMax; j++) {
-      board.rows[i].dots[j].hasDot = true;
-      board.rows[i].dots[j].xPos = j;
-      board.rows[i].dots[j].yPos = i;
-      board.rows[i].dots[j].color = randomColorGenerator();
-    }
-  }
-}
-
-circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
+circlesSquares.controller('BoardCtrl', function BoardCtrl($scope, TimerFactory) {
+  $scope.TimerFactory = TimerFactory;
+  $scope.board = TimerFactory.board;
+  var boardMin = TimerFactory.boardMin;
+  var boardMax = TimerFactory.boardMax;
+  var dotMin = TimerFactory.dotMin;
+  var dotMax = TimerFactory.dotMax;
+  $scope.score = TimerFactory.score;
+  $scope.timerValue = TimerFactory.timerValue;
   $scope.clicked = false;
-  $scope.board = createBoard();
-  placeInitialDots($scope.board);
+  $scope.board = TimerFactory.createBoard();
+  TimerFactory.placeInitialDots($scope.board);
   $scope.clickedColor = "";
   $scope.hoverXPos;
   $scope.hoverYPos;
   $scope.counter = 0;
-  $scope.score = 0;
 
 
-//repopulates by looking at top row of the board and "generating" new dots.
-  $scope.repopulate = function(dot) {
-    for(var i = dotMin; i < dotMin + 1; i++) {
-      for(var j = dotMin; j < dotMax; j++) {
-        if ($scope.board.rows[i].dots[j].hasDot == false){
-          $scope.board.rows[i].dots[j].hasDot = true;
-          $scope.board.rows[i].dots[j].color = randomColorGenerator();
-          $scope.score++;
-        }
-      }
-    }
-  }
+
+  // //board increase
+  //  $scope.boardIncrease = function() {
+  //     TimerFactory.boardMax++;
+  //     console.log(TimerFactory.boardMax);
+  //     TimerFactory.createBoard();
+  //     TimerFactory.repopulate();
+  // }
+// //board increase
+//    $scope.boardIncrease = function() {
+//       TimerFactory.boardMax++;
+//       $scope.repopulate();
+//   }
 
 //checks for a dot above the empty spot and moves it down
   $scope.dotDrop = function(dot) {
@@ -179,7 +103,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
       for(var j = dotMin; j < dotMax; j++) {
         $scope.dotDrop();
         // $scope.delayDrop();
-        $scope.repopulate();
+        TimerFactory.repopulate();
         // $scope.dropInterval();
       }
     }
