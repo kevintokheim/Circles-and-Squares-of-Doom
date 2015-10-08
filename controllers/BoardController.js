@@ -30,22 +30,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope, TimerFactory) 
 //       $scope.repopulate();
 //   }
 
-//checks for a dot above the empty spot and moves it down
-  $scope.dotDrop = function(dot) {
-    for(var i = dotMin; i < dotMax; i++) {
-      for(var j = dotMin; j < dotMax; j++) {
-        //if the current position is empty and the position above is not empty...
-        if (($scope.board.rows[i].dots[j].hasDot == false) && ($scope.board.rows[dotMin].dots[j].hasDot != false)) {
-          //sets the empty hasDot spot to true
-          $scope.board.rows[i].dots[j].hasDot = true;
-          //sets the spot to the color of the spot directly above.
-          $scope.board.rows[i].dots[j].color = $scope.board.rows[i-1].dots[j].color;
-          //sets the spot directly above to false making an empty spot.
-          $scope.board.rows[i-1].dots[j].hasDot = false;
-                }
-      }
-    }
-  }
+
 
 //makes the magic happen Steven?
   $scope.addClick = function(dot) {
@@ -101,7 +86,7 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope, TimerFactory) 
     //check each position, drop the dots all down and repopulate the top row
     for(var i = dotMin; i < dotMax; i++) {
       for(var j = dotMin; j < dotMax; j++) {
-        $scope.dotDrop();
+        TimerFactory.dotDrop();
         // $scope.delayDrop();
         TimerFactory.repopulate();
         // $scope.dropInterval();

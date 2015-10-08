@@ -8,3 +8,7 @@ img {
   height: auto;
   width: 100%;
 }
+
+body {
+  background-color: black;
+}

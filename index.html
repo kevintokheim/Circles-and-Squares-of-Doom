@@ -2,6 +2,7 @@
 
 <html ng-app= "circlesSquares">
   <head>
+    <div class="container">
     <meta charset="UTF-8">
     <script src="js/jquery-1.11.3.js"></script>
     <script src="lib/angular.js"></script>
@@ -32,12 +33,12 @@
           <!-- playing board -->
           <tr ng-repeat="row in TimerFactory.board.rows">
             <td class="animated fadeInDown" ng-repeat="dot in row.dots" ng-mouseenter="mouseEnter(dot); checkForSquare(dot)" ng-mousedown="addClick(dot)" ng-mouseup="mouseUp(dot)">
-              <img class="animated slideInDown" ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=20px>
-              <img class="animated slideInDown" ng-if="dot.color=='orange' && dot.hasDot" src="images/orange.svg" height=20px>
-              <img class="animated slideInDown" ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=20px>
-              <img class="animated slideInDown" ng-if="dot.color=='green' && dot.hasDot" src="images/green.svg" height=20px>
-              <img class="animated slideInDown" ng-if="dot.color=='blue' && dot.hasDot" src="images/blue.svg" height=20px>
-              <img ng-if="!dot.hasDot" src="images/blank2.jpg" height=20px>
+              <img class="animated slideInDown" ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=40px>
+              <img class="animated slideInDown" ng-if="dot.color=='orange' && dot.hasDot" src="images/orange.svg" height=40px>
+              <img class="animated slideInDown" ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=40px>
+              <img class="animated slideInDown" ng-if="dot.color=='green' && dot.hasDot" src="images/green.svg" height=40px>
+              <img class="animated slideInDown" ng-if="dot.color=='blue' && dot.hasDot" src="images/blue.svg" height=40px>
+              <!-- <img ng-if="!dot.hasDot" src="images/blank2.jpg" height=20px> -->
             </td>
           </tr>
         </table>
@@ -50,6 +51,7 @@
 
 
   </div>
+</div>
 </body>
 
 </html>
