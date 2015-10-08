@@ -7,6 +7,31 @@ var boardMax = 10;
 var dotMin = 0;
 var dotMax = 10;
 
+var time=30;
+//timer
+
+
+  $(document).on('click', '#timerStart', function(){
+    setInterval(timer, 1000);
+  });
+
+  function timer()
+  {
+    time -= 1;
+    if(time == 25){
+      boardIncrease();
+      return time;
+      console.log(boardMax);
+    }
+  // console.log(time);
+  }
+  
+function boardIncrease() {
+    boardMax++;
+    createBoard();
+    placeInitialDots();
+}
+/////////////////////
 function createBoard() {
   var board = {};
   board.rows = [];
@@ -97,32 +122,6 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
       }
     }
   }
-
-//timer
-  $scope.timerClicked = false;
-
-  // $scope.time = $(".timerValue").text();
-  $scope.time=30;
-
-  $scope.timer = function()
-  {
-    $scope.time -= 1;
-    if($scope.time == 25){
-      $scope.boardIncrease();
-      console.log(boardMax);
-    }
-  console.log($scope.time);
-  }
-
-  $scope.countdown = function(){
-  setInterval($scope.timer, 1000);
-  }
-
-$scope.boardIncrease = function() {
-    boardMax++;
-    createBoard();
-    placeInitialDots();
-}
 
 //makes the magic happen Steven?
   $scope.addClick = function(dot) {
