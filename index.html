@@ -17,6 +17,7 @@
     <title>Circles and Squares of Doom</title>
   </head>
   <body>
+    <div class="container">
     <audio id="scoreSound" src="sounds/coin.wav"></audio>
     <audio id="scoreSound2" src="sounds/levelup.wav"></audio>
     <audio id="squareScore" src="sounds/bubbling.wav"></audio>
@@ -31,11 +32,11 @@
           <!-- playing board -->
           <tr ng-repeat="row in board.rows">
             <td class="animated fadeInDown" ng-repeat="dot in row.dots" ng-mouseenter="mouseEnter(dot); checkForSquare(dot)" ng-mousedown="addClick(dot)" ng-mouseup="mouseUp(dot)">
-              <img class="animated slideInDown" ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=20px>
-              <img class="animated slideInDown" ng-if="dot.color=='orange' && dot.hasDot" src="images/orange.svg" height=20px>
-              <img class="animated slideInDown" ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=20px>
-              <img class="animated slideInDown" ng-if="dot.color=='green' && dot.hasDot" src="images/green.svg" height=20px>
-              <img class="animated slideInDown" ng-if="dot.color=='blue' && dot.hasDot" src="images/blue.svg" height=20px>
+              <img class="animated slideInDown" ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=40px>
+              <img class="animated slideInDown" ng-if="dot.color=='orange' && dot.hasDot" src="images/orange.svg" height=40px>
+              <img class="animated slideInDown" ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=40px>
+              <img class="animated slideInDown" ng-if="dot.color=='green' && dot.hasDot" src="images/green.svg" height=40px>
+              <img class="animated slideInDown" ng-if="dot.color=='blue' && dot.hasDot" src="images/blue.svg" height=40px>
               <img ng-if="!dot.hasDot" src="images/blank2.jpg" height=20px>
             </td>
           </tr>
@@ -49,6 +50,7 @@
 
 
   </div>
+</div>
 </body>
 
 </html>
