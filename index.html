@@ -26,26 +26,31 @@
     <audio id="soundTrack" src="sounds/coastal.mp3"></audio>
     <h1><img src="images/logo2.gif"></img></h1>
     <div ng-controller="BoardCtrl">
-      <button ng-click="playSoundtrack()" name="Music">Music</button>
+      <button class="btn btn-warning" ng-click="playSoundtrack()" name="Music">Music</button>
 
-      <button id="timerStart" ng-click="showme=true; TimerFactory.countdown()">Start</button>
-      <div ng-show="showme">
-        <table>
-          <!-- playing board -->
-          <tr ng-repeat="row in TimerFactory.board.rows">
-            <td class="animated" ng-repeat="dot in row.dots" ng-mouseenter="TimerFactory.mouseEnter(dot); TimerFactory.checkForSquare(dot)" ng-mousedown="TimerFactory.addClick(dot)" ng-mouseup="TimerFactory.mouseUp(dot)">
-              <img class="animated slideInDown" ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=40px>
-              <img class="animated slideInDown" ng-if="dot.color=='orange' && dot.hasDot" src="images/orange.svg" height=40px>
-              <img class="animated slideInDown" ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=40px>
-              <img class="animated slideInDown" ng-if="dot.color=='green' && dot.hasDot" src="images/green.svg" height=40px>
-              <img class="animated slideInDown" ng-if="dot.color=='blue' && dot.hasDot" src="images/blue.svg" height=40px>
-              <!-- <img ng-if="!dot.hasDot" src="images/blank2.jpg" height=40px> -->
-            </td>
-          </tr>
-        </table>
-        <div>
-          <h1>Current Score: {{TimerFactory.score}}</h1>
+      <button class="btn btn-success" id="timerStart" ng-click="showme=true; TimerFactory.countdown()">Start</button>
+      <hr>
+      <div class="col-xs-7">
+        <div ng-show="showme">
+          <table>
+            <!-- playing board -->
+            <tr ng-repeat="row in TimerFactory.board.rows">
+              <td class="animated" ng-repeat="dot in row.dots" ng-mouseenter="TimerFactory.mouseEnter(dot); TimerFactory.checkForSquare(dot)" ng-mousedown="TimerFactory.addClick(dot)" ng-mouseup="TimerFactory.mouseUp(dot)">
+                <img class="animated slideInDown" ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=40px>
+                <img class="animated slideInDown" ng-if="dot.color=='orange' && dot.hasDot" src="images/orange.svg" height=40px>
+                <img class="animated slideInDown" ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=40px>
+                <img class="animated slideInDown" ng-if="dot.color=='green' && dot.hasDot" src="images/green.svg" height=40px>
+                <img class="animated slideInDown" ng-if="dot.color=='blue' && dot.hasDot" src="images/blue.svg" height=40px>
+                <!-- <img ng-if="!dot.hasDot" src="images/blank2.jpg" height=40px> -->
+              </td>
+            </tr>
+          </table>
+          <div>
+            <h1>Current Score: {{TimerFactory.score}}</h1>
+          </div>
         </div>
+      </div>
+      <div class="col-xs-5">
         <div class="timer" data-timer = "30"></div>
       </div>
     </div>
