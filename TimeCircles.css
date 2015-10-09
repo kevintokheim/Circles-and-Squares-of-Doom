@@ -26,6 +26,7 @@
     text-align: center;
     text-transform: uppercase;
     font-family: 'Century Gothic', Arial;
+    color: white;
 }
 
 /**
@@ -39,4 +40,5 @@
     font-size: 300%;
     margin-top: 0.4em;
     font-weight: bold;
+    color: white;
 }
