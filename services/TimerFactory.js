@@ -18,9 +18,10 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
   factory.timer = function()
   {
     factory.timerValue -= 1;
-    if(factory.timerValue == 28){
+    if(factory.timerValue == 0){
       factory.boardIncrease();
       console.log(factory.board);
+      factory.timerValue = 30;
       return factory.timerValue;
     }
   }
@@ -35,6 +36,19 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
       factory.placeInitialDots();
       // factory.repopulate();
   }
+
+
+  //board decrease
+     factory.boardDecrease = function() {
+        factory.boardMax--;
+        factory.dotMax--;
+        // factory.boardAdd();
+        console.log(factory.boardMax);
+        console.log(factory.dotMax);
+        factory.createBoard();
+        factory.placeInitialDots();
+        // factory.repopulate();
+    }
 //createBoard
   factory.createBoard = function() {
     factory.board = {};

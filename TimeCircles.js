@@ -79,7 +79,7 @@
     };
     var secondsIn = {
         Seconds: 1,
-        Minutes: 60,
+        Minutes: 30,
         Hours: 3600,
         Days: 86400,
         Months: 2678400,
