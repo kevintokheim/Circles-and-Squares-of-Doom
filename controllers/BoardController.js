@@ -106,14 +106,14 @@ circlesSquares.controller('BoardCtrl', function BoardCtrl($scope) {
   $scope.timerClicked = false;
 
   // $scope.time = $(".timerValue").text();
-  $scope.time=30;
+  $scope.time=15;
 
   $scope.timer = function()
   {
     $scope.time -= 1;
-    if($scope.time == 25){
-      $scope.boardIncrease();
-      console.log(boardMax);
+    if($scope.time == 0){
+        document.location.reload(true);
+      alert("You Lose! Try harder!");
     }
   console.log($scope.time);
   }
@@ -167,6 +167,7 @@ $scope.boardIncrease = function() {
                 }
               }
             }
+                  $scope.time = $scope.time + 10;
           } //end checksquare if
 
         } else {
@@ -191,10 +192,17 @@ $scope.boardIncrease = function() {
     if (($scope.counter > 1) && ($scope.counter < 4)){
       var scoreSound = document.getElementById("scoreSound");
       scoreSound.play();
+      $scope.time =$scope.time + 1;
+
     }
     if ($scope.counter >= 4) {
       var scoreSound2 = document.getElementById("scoreSound2");
       scoreSound2.play();
+      if ($scope.counter > 5) {
+          $scope.time = $scope.time + 5;
+      } else {
+          $scope.time = $scope.time + $scope.counter;
+      }
     }
 
     $scope.counter = 0;
