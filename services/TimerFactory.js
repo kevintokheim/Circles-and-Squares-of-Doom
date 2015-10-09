@@ -6,6 +6,7 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
   factory.boardMin = 0;
   factory.boardMax = 10;
   factory.score = 0;
+  factory.boardShrink = 10;
 
   factory.dotMin = 0;
   factory.dotMax = 10;
@@ -37,9 +38,15 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
       // factory.repopulate();
   }
 
+factory.boardSinker = function() {
+  if( factory.boardShrink == 0 ) {
+    factory.boardDecrease();
+    factory.boardShrink = 10;
+  }
 
+}
   //board decrease
-     factory.boardDecrease = function() {
+    factory.boardDecrease = function() {
         factory.boardMax--;
         factory.dotMax--;
         // factory.boardAdd();
@@ -49,6 +56,7 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
         factory.placeInitialDots();
         // factory.repopulate();
     }
+
 //createBoard
   factory.createBoard = function() {
     factory.board = {};
@@ -124,6 +132,7 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
             factory.board.rows[i].dots[j].hasDot = true;
             factory.board.rows[i].dots[j].color = factory.randomColorGenerator();
             factory.score++;
+            factory.boardShrink--;
           }
         }
       }
@@ -167,6 +176,7 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
                 if(factory.board.rows[i].dots[j].color == dot.color){
                   factory.board.rows[i].dots[j].hasDot = false;
                   factory.score++;
+                  factory.boardShrink--;
                 }
               }
             }
@@ -186,6 +196,7 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
     for(var i = factory.dotMin; i < factory.dotMax; i++) {
       for(var j = factory.dotMin; j < factory.dotMax; j++) {
         factory.dotDrop();
+        factory.boardSinker();
         factory.repopulate();
       }
     }
