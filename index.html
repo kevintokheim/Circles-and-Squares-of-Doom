@@ -26,7 +26,7 @@
     <audio id="soundTrack" src="sounds/coastal.mp3"></audio>
     <h1><img src="images/logo2.gif"></img></h1>
     <div ng-controller="BoardCtrl">
-      <button class="btn btn-warning" ng-click="playSoundtrack()" name="Music">Music</button>
+      <button class="btn btn-warning" ng-click="TimerFactory.playSoundtrack()" name="Music">Music</button>
 
       <button class="btn btn-success" id="timerStart" ng-click="showme=true; TimerFactory.countdown()">Start</button>
       <hr>

@@ -6,6 +6,8 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
   factory.boardMin = 0;
   factory.boardMax = 10;
   factory.score = 0;
+  factory.boardShrink = 50;
+  console.log(factory.boardShrink);
 
   factory.dotMin = 0;
   factory.dotMax = 10;
@@ -13,14 +15,14 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
 //`time`r
   factory.countdown = function() {
     setInterval(factory.timer, 1000);
-    console.log('countdown works');
+    // console.log('countdown works');
   }
   factory.timer = function()
   {
     factory.timerValue -= 1;
     if(factory.timerValue == 0){
       factory.boardIncrease();
-      console.log(factory.board);
+      // console.log(factory.board);
       factory.timerValue = 30;
       return factory.timerValue;
     }
@@ -29,26 +31,41 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
    factory.boardIncrease = function() {
       factory.boardMax++;
       factory.dotMax++;
+      if (factory.boardMax == 15) {
+        alert("The board has grown too large and consumed your soul. You lose!");
+        document.location.reload(true);
+      }
       // factory.boardAdd();
-      console.log(factory.boardMax);
-      console.log(factory.dotMax);
+      // console.log(factory.boardMax);
+      // console.log(factory.dotMax);
       factory.createBoard();
       factory.placeInitialDots();
       // factory.repopulate();
   }
 
+factory.boardSinker = function() {
+  if( factory.boardShrink <= 0 ) {
+    factory.boardDecrease();
+    factory.boardShrink = 50;
+  }
 
+}
   //board decrease
-     factory.boardDecrease = function() {
+    factory.boardDecrease = function() {
         factory.boardMax--;
         factory.dotMax--;
         // factory.boardAdd();
+        if (factory.boardMax == 4) {
+          alert("You have sunk the soul of the board. You Win!")
+          document.location.reload(true);
+        }
         console.log(factory.boardMax);
         console.log(factory.dotMax);
         factory.createBoard();
         factory.placeInitialDots();
         // factory.repopulate();
     }
+
 //createBoard
   factory.createBoard = function() {
     factory.board = {};
@@ -124,6 +141,8 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
             factory.board.rows[i].dots[j].hasDot = true;
             factory.board.rows[i].dots[j].color = factory.randomColorGenerator();
             factory.score++;
+            factory.boardShrink--;
+            console.log(factory.boardShrink)
           }
         }
       }
@@ -167,6 +186,7 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
                 if(factory.board.rows[i].dots[j].color == dot.color){
                   factory.board.rows[i].dots[j].hasDot = false;
                   factory.score++;
+                  factory.boardShrink--;
                 }
               }
             }
@@ -186,6 +206,7 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
     for(var i = factory.dotMin; i < factory.dotMax; i++) {
       for(var j = factory.dotMin; j < factory.dotMax; j++) {
         factory.dotDrop();
+        factory.boardSinker();
         factory.repopulate();
       }
     }
